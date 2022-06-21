@@ -21,7 +21,10 @@ namespace ControledeContatos.Controllers
 
         public IActionResult Index()
         {
-            return View();
+           List<ContatoModel> contatos =_contatoRepositorio.BuscarTodos();
+            return View(contatos);
+
+
         }
 
         public IActionResult Criar()
@@ -29,20 +32,46 @@ namespace ControledeContatos.Controllers
             return View();
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int id)
         {
-            return View();
+
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            
+            return View(contato);
         }
 
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
-            return View();
+            ContatoModel contato = _contatoRepositorio.ListarPorId(id);
+            return View(contato);
+
+
         }
+        
+        public IActionResult remove(int id)
+        {
+            _contatoRepositorio.remove(id);
+            return RedirectToAction("Index");
+        }
+      
 
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
-            _contatoRepositorio.Adicionar(contato);
+            if(ModelState.IsValid)
+            {
+                _contatoRepositorio.Adicionar(contato);
+                return RedirectToAction("Index");
+
+            }
+
+            return View(contato);
+        }
+       
+        [HttpPost]
+        public IActionResult Alterar(ContatoModel contato)
+        {
+            _contatoRepositorio.Atualizar(contato);
             return RedirectToAction("Index");
         }
     }
