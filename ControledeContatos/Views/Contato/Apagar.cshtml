@@ -4,9 +4,12 @@
 }
 
 
+
 <div class="text-center">
 
     <h3>Realmente deseja apagar o contato (@Model.Nome)?</h3>
 </div>
+
+
 <a class="btn btn-danger btn-block" role="button" style="cursor:pointer" asp-controller="Contato" asp-route-id="@Model.Id" asp-action="remove">Confirmar exclusão</a>
 <a class="btn btn-primary btn-block" role="button" style="cursor:pointer" asp-controller="Contato" asp-action="Index">Cancelar exclusão</a>

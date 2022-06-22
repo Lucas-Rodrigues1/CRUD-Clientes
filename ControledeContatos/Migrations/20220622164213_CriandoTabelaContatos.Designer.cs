@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControledeContatos.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20220620231506_CriandoTabelaContatos")]
+    [Migration("20220622164213_CriandoTabelaContatos")]
     partial class CriandoTabelaContatos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,12 +28,15 @@ namespace ControledeContatos.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Celular")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
